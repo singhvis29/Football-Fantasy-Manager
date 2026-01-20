@@ -1,0 +1,43 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+.pytest_cache/
+__pycache__/
+
+# Python environments
+.venv/
+.venv_fpl/
+env/
+venv/
+
+# Logs
+logs/
+*.log
+
+# Data artifacts
+data/
+!data/.gitkeep
+
+# Notebook cruft
+.ipynb_checkpoints/
+
+# Credentials / secrets
+*.env
+.env
+.env.*
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*.token
+*.creds
+*.credentials
+
+# Local config overrides
+config.local.*
+
