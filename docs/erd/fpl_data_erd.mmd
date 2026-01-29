@@ -1,0 +1,95 @@
+erDiagram
+    PLAYER_MATCH_STATS_RAW {
+        int player_id
+        string season
+        int gameweek
+        int match_id
+        int team_id
+        int opponent_team_id
+        boolean was_home
+        int minutes
+        int total_points
+        int goals_scored
+        int assists
+        int clean_sheets
+        int goals_conceded
+        int own_goals
+        int penalties_saved
+        int penalties_missed
+        int yellow_cards
+        int red_cards
+        int saves
+        int bonus
+        int bps
+        float influence
+        float creativity
+        float threat
+        float ict_index
+        int value
+        int transfers_in
+        int transfers_out
+        int transfers_balance
+        int selected
+        int element_type
+    }
+
+    TEAM_MATCH_STATS {
+        int team_id
+        string season
+        int gameweek
+        int match_id
+        int opponent_team_id
+        boolean was_home
+        int team_goals
+        int team_goals_conceded
+        boolean team_clean_sheet
+        int yellow_cards
+        int red_cards
+        int total_points
+        int bps
+        string team_name
+        string opponent_team_name
+    }
+
+    FIXTURES {
+        int match_id
+        string season
+        int gameweek
+        int team_id
+        int opponent_team_id
+        boolean was_home
+        int fixture_difficulty
+        datetime kickoff_time
+        boolean finished
+        int team_a_score
+        int team_h_score
+        float days_rest
+        boolean is_double_gw
+        string team_name
+        string opponent_team_name
+    }
+
+    PLAYER_GW_FEATURES {
+        int player_id
+        string season
+        int gameweek
+        int team_id
+        int opponent_team_id
+        boolean was_home
+        float xpts_target_tplus1
+        float expected_minutes_tplus1
+        float points_per_90_history
+        float rolling_points_3g
+        float rolling_points_5g
+        float team_attack_strength
+        float team_defence_strength
+        float opponent_attack_strength
+        float opponent_defence_strength
+    }
+
+    PLAYER_MATCH_STATS_RAW ||--o{ TEAM_MATCH_STATS : "aggregates to"
+    PLAYER_MATCH_STATS_RAW ||--o{ PLAYER_GW_FEATURES : "lagged features from"
+    TEAM_MATCH_STATS ||--o{ PLAYER_GW_FEATURES : "team strength features"
+    FIXTURES ||--o{ PLAYER_MATCH_STATS_RAW : "provides match context"
+    FIXTURES ||--o{ TEAM_MATCH_STATS : "defines fixture + scores"
+    FIXTURES ||--o{ PLAYER_GW_FEATURES : "fixture difficulty, rest"
